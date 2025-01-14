@@ -96,15 +96,14 @@ updateFeature()
 
 //Delete feature
 const deleteButton = document.querySelector("button")
+const ramenToDelete = document.querySelector("#ramen-to-delete")
 deleteButton.addEventListener("click", handleDelete) //call the handleDelete fucntion when delete button is clicked
-
-function handleDelete() { //this should remove the display ramen from the ramenMenu
-  fetch (`http://localhost:3000/ramens`, {method: 'DELETE'})
+// console.log(ramenToDelete.value)
+// const valueOfRamenToDelete = ramenToDelete.value
+// console.log(valueOfRamenToDelete)
+function handleDelete() { //this should remove the ramen from the .json file
+  fetch (`http://localhost:3000/ramens/${ramenToDelete.value}`, {method: 'DELETE'})
 }
-
-handleDelete()
-
-
 
 
 

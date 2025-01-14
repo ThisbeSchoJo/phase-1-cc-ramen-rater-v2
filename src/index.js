@@ -41,7 +41,6 @@ const addSubmitListener = () => {
       rating: ratingInForm.value,
       comment: commentInForm.value
     }
-    ramensArray.push(newRamen)
 
     ramenImageToAdd.src = imageInForm.value
     ramenImageToAdd.addEventListener('click', () => {
@@ -74,6 +73,45 @@ const displayRamens = () => {
     handleClick(ramens[0])
   })
 };
+
+
+
+
+//Update Feature
+const updateFeature = () => {
+  const editMenu = document.getElementById('edit-ramen')
+  editMenu.addEventListener('submit', (event) => {
+    event.preventDefault()
+    const newRating = document.getElementById("edit-rating")
+    const ramenRating = document.getElementById("rating-display")
+    ramenRating.textContent = newRating.value
+    const newComment = document.getElementById("edit-comment")
+    const ramenComment = document.getElementById("comment-display")
+    ramenComment.textContent = newComment.value
+  })
+}
+
+updateFeature()
+
+
+//Delete feature
+const deleteButton = document.querySelector("button")
+deleteButton.addEventListener("click", handleDelete) //call the handleDelete fucntion when delete button is clicked
+
+function handleDelete() { //this should remove the display ramen from the ramenMenu
+  fetch (`http://localhost:3000/ramens`, {method: 'DELETE'})
+}
+
+handleDelete()
+
+
+
+
+
+
+
+
+
 
 const main = () => {
   //Deliverable 1

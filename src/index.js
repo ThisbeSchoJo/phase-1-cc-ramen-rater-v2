@@ -1,21 +1,86 @@
 // index.js
+const ramensArray = []
 
 // Callbacks
 const handleClick = (ramen) => {
   // Add code
+  //should fire on a click on every img inside #ramen-menu
+  //should append the correct data to the DOM
+  const detailImageElement = document.querySelector('.detail-image')
+  // console.log(detailImageElement)
+  detailImageElement.src = ramen.image
+  const nameElement = document.querySelector('.name')
+  nameElement.textContent = ramen.name
+  // console.log(nameElement)
+  // console.log(ramen.name)
+  const restaurantNameElement = document.querySelector('.restaurant')
+  restaurantNameElement.textContent = ramen.restaurant
+  // console.log(restaurantNameElement)
+  const ramenRating = document.getElementById("rating-display")
+  ramenRating.textContent = ramen.rating
+  const ramenComment = document.getElementById("comment-display")
+  ramenComment.textContent = ramen.comment
 };
 
+
 const addSubmitListener = () => {
-  // Add code
+  const addToMenu = document.getElementById('new-ramen')
+  addToMenu.addEventListener('submit', (event) => {
+    event.preventDefault()
+    const nameInForm = document.getElementById("new-name")
+    const restaurantInForm = document.getElementById("new-restaurant")
+    const imageInForm = document.getElementById("new-image")
+    const ramenImageToAdd = document.createElement('img')
+    const ratingInForm = document.getElementById("new-rating")
+    const commentInForm = document.getElementById("new-comment")
+    const newRamen = {
+      id: ramensArray.length,
+      name: nameInForm.value, 
+      restaurant: restaurantInForm.value,
+      image: imageInForm.value,
+      rating: ratingInForm.value,
+      comment: commentInForm.value
+    }
+    ramensArray.push(newRamen)
+
+    ramenImageToAdd.src = imageInForm.value
+    ramenImageToAdd.addEventListener('click', () => {
+      handleClick(newRamen)
+  })
+    const ramenMenu = document.getElementById("ramen-menu")
+    ramenMenu.appendChild(ramenImageToAdd)
+    
+    event.target.reset()
+  })
 }
 
+
 const displayRamens = () => {
-  // Add code
+  //Should fetch all ramens and display them as <img> inside #ramen-menu
+  fetch('http://localhost:3000/ramens')
+  .then(response => response.json())
+  .then(ramens => {
+    ramens.forEach(ramen => {
+      ramensArray.push(ramen)
+      const ramenImage = document.createElement('img')
+      ramenImage.src = ramen.image
+      const ramenMenu = document.getElementById("ramen-menu")
+      ramenMenu.appendChild(ramenImage)
+
+      ramenImage.addEventListener('click', () => {
+        handleClick(ramen)
+      })
+    })
+    handleClick(ramens[0])
+  })
 };
 
 const main = () => {
-  // Invoke displayRamens here
-  // Invoke addSubmitListener here
+  //Deliverable 1
+  document.addEventListener('DOMContentLoaded', () => {
+    displayRamens()
+    addSubmitListener()
+  })
 }
 
 main()

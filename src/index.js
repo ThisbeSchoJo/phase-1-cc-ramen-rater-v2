@@ -3,19 +3,14 @@ const ramensArray = []
 
 // Callbacks
 const handleClick = (ramen) => {
-  // Add code
   //should fire on a click on every img inside #ramen-menu
   //should append the correct data to the DOM
   const detailImageElement = document.querySelector('.detail-image')
-  // console.log(detailImageElement)
   detailImageElement.src = ramen.image
   const nameElement = document.querySelector('.name')
   nameElement.textContent = ramen.name
-  // console.log(nameElement)
-  // console.log(ramen.name)
   const restaurantNameElement = document.querySelector('.restaurant')
   restaurantNameElement.textContent = ramen.restaurant
-  // console.log(restaurantNameElement)
   const ramenRating = document.getElementById("rating-display")
   ramenRating.textContent = ramen.rating
   const ramenComment = document.getElementById("comment-display")
@@ -98,18 +93,9 @@ updateFeature()
 const deleteButton = document.querySelector("button")
 const ramenToDelete = document.querySelector("#ramen-to-delete")
 deleteButton.addEventListener("click", handleDelete) //call the handleDelete fucntion when delete button is clicked
-// console.log(ramenToDelete.value)
-// const valueOfRamenToDelete = ramenToDelete.value
-// console.log(valueOfRamenToDelete)
 function handleDelete() { //this should remove the ramen from the .json file
   fetch (`http://localhost:3000/ramens/${ramenToDelete.value}`, {method: 'DELETE'})
 }
-
-
-
-
-
-
 
 
 const main = () => {

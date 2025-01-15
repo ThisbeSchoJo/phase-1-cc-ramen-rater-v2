@@ -72,30 +72,30 @@ const displayRamens = () => {
 
 
 
-//Update Feature
-const updateFeature = () => {
-  const editMenu = document.getElementById('edit-ramen')
-  editMenu.addEventListener('submit', (event) => {
-    event.preventDefault()
-    const newRating = document.getElementById("edit-rating")
-    const ramenRating = document.getElementById("rating-display")
-    ramenRating.textContent = newRating.value
-    const newComment = document.getElementById("edit-comment")
-    const ramenComment = document.getElementById("comment-display")
-    ramenComment.textContent = newComment.value
-  })
-}
+// //Update Feature
+// const updateFeature = () => {
+//   const editMenu = document.getElementById('edit-ramen')
+//   editMenu.addEventListener('submit', (event) => {
+//     event.preventDefault()
+//     const newRating = document.getElementById("edit-rating")
+//     const ramenRating = document.getElementById("rating-display")
+//     ramenRating.textContent = newRating.value
+//     const newComment = document.getElementById("edit-comment")
+//     const ramenComment = document.getElementById("comment-display")
+//     ramenComment.textContent = newComment.value
+//   })
+// }
 
-updateFeature()
+// updateFeature()
 
 
-//Delete feature
-const deleteButton = document.querySelector("button")
-const ramenToDelete = document.querySelector("#ramen-to-delete")
-deleteButton.addEventListener("click", handleDelete) //call the handleDelete fucntion when delete button is clicked
-function handleDelete() { //this should remove the ramen from the .json file
-  fetch (`http://localhost:3000/ramens/${ramenToDelete.value}`, {method: 'DELETE'})
-}
+// //Delete feature
+// const deleteButton = document.querySelector("button")
+// const ramenToDelete = document.querySelector("#ramen-to-delete")
+// deleteButton.addEventListener("click", handleDelete) //call the handleDelete fucntion when delete button is clicked
+// function handleDelete() { //this should remove the ramen from the .json file
+//   fetch (`http://localhost:3000/ramens/${ramenToDelete.value}`, {method: 'DELETE'})
+// }
 
 
 const main = () => {
